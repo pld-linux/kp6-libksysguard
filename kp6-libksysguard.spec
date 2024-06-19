@@ -1,18 +1,18 @@
 #
 # Conditional build:
 %bcond_with	tests		# build with tests
-%define		kdeplasmaver	6.0.5
+%define		kdeplasmaver	6.1.0
 %define		qtver		5.15.2
 %define		kpname		libksysguard
 
 Summary:	Library for monitoring your system
 Name:		kp6-%{kpname}
-Version:	6.0.5
+Version:	6.1.0
 Release:	1
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	https://download.kde.org/stable/plasma/%{kdeplasmaver}/%{kpname}-%{version}.tar.xz
-# Source0-md5:	be08ef0ddb460588ab2ac89d9a537956
+# Source0-md5:	64143cd9dc7f5c0b07302fb4edb65132
 URL:		http://www.kde.org/
 BuildRequires:	Qt6Core-devel >= %{qtver}
 BuildRequires:	Qt6Sensors-devel >= %{qtver}
@@ -34,6 +34,7 @@ BuildRequires:	ninja
 BuildRequires:	rpmbuild(macros) >= 1.164
 BuildRequires:	xz
 BuildRequires:	zlib-devel
+Obsoletes:	kp5-%{kpname} < %{version}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		qt6dir		%{_libdir}/qt6
@@ -46,6 +47,7 @@ Summary:	Header files for %{kpname} development
 Summary(pl.UTF-8):	Pliki nagłówkowe dla programistów używających %{kpname}
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}-%{release}
+Obsoletes:	kp5-%{kpname}-devel < %{version}
 
 %description devel
 Header files for %{kpname} development.
@@ -130,6 +132,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/qt6/plugins/kf6/packagestructure/ksysguard_sensorface.so
 %attr(755,root,root) %{_prefix}/libexec/kf6/kauth/ksysguardprocesslist_helper
 %{_datadir}/dbus-1/interfaces/org.kde.ksystemstats1.xml
+%{_libdir}/qt6/qml/org/kde/ksysguard/faces/CompactSensorFace.qml
 
 %files devel
 %defattr(644,root,root,755)
