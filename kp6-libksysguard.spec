@@ -1,18 +1,18 @@
 #
 # Conditional build:
 %bcond_with	tests		# build with tests
-%define		kdeplasmaver	6.1.5
+%define		kdeplasmaver	6.2.0
 %define		qtver		5.15.2
 %define		kpname		libksysguard
 
 Summary:	Library for monitoring your system
 Name:		kp6-%{kpname}
-Version:	6.1.5
+Version:	6.2.0
 Release:	1
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	https://download.kde.org/stable/plasma/%{kdeplasmaver}/%{kpname}-%{version}.tar.xz
-# Source0-md5:	e38e94c22b6cd2b4bb4ad7c4cbbf4dbf
+# Source0-md5:	9e78702ff5502a6cb1664367a77ac4df
 URL:		http://www.kde.org/
 BuildRequires:	Qt6Core-devel >= %{qtver}
 BuildRequires:	Qt6Sensors-devel >= %{qtver}
@@ -75,7 +75,7 @@ ctest
 rm -rf $RPM_BUILD_ROOT
 %ninja_install -C build
 
-%find_lang %{kpname}5 --all-name --with-kde
+%find_lang %{kpname} --all-name --with-kde
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -83,7 +83,7 @@ rm -rf $RPM_BUILD_ROOT
 %post -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
 
-%files -f %{kpname}5.lang
+%files -f %{kpname}.lang
 %defattr(644,root,root,755)
 %{_datadir}/dbus-1/system.d/org.kde.ksysguard.processlisthelper.conf
 %{_datadir}/dbus-1/system-services/org.kde.ksysguard.processlisthelper.service
@@ -92,7 +92,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/qlogging-categories6/libksysguard.categories
 %ghost %{_libdir}/libprocesscore.so.10
 %attr(755,root,root) %{_libdir}/libprocesscore.so.*.*
-
 %ghost %{_libdir}/libKSysGuardFormatter.so.2
 %attr(755,root,root) %{_libdir}/libKSysGuardFormatter.so.*.*
 %ghost %{_libdir}/libKSysGuardSensorFaces.so.2
@@ -106,17 +105,13 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_libdir}/qt6/qml/org/kde/ksysguard/sensors
 %{_libdir}/qt6/qml/org/kde/ksysguard/faces/ExtendedLegend.qml
 %{_libdir}/qt6/qml/org/kde/ksysguard/faces/SensorFace.qml
-%attr(755,root,root) %{_libdir}/qt6/qml/org/kde/ksysguard/faces/libFacesPlugin.so
 %{_libdir}/qt6/qml/org/kde/ksysguard/faces/qmldir
-%attr(755,root,root) %{_libdir}/qt6/qml/org/kde/ksysguard/formatter/libFormatterPlugin.so
 %{_libdir}/qt6/qml/org/kde/ksysguard/formatter/qmldir
 %attr(755,root,root) %{_libdir}/qt6/qml/org/kde/ksysguard/process/libProcessPlugin.so
 %{_libdir}/qt6/qml/org/kde/ksysguard/process/qmldir
-%attr(755,root,root) %{_libdir}/qt6/qml/org/kde/ksysguard/sensors/libSensorsPlugin.so
 %{_libdir}/qt6/qml/org/kde/ksysguard/sensors/qmldir
 %{_datadir}/knsrcfiles/systemmonitor-faces.knsrc
 %{_datadir}/knsrcfiles/systemmonitor-presets.knsrc
-
 %ghost %{_libdir}/libKSysGuardSystemStats.so.2
 %attr(755,root,root) %{_libdir}/libKSysGuardSystemStats.so.*.*.*
 %dir %{_libdir}/qt6/plugins/ksysguard
@@ -125,14 +120,27 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/qt6/plugins/ksysguard/process/ksysguard_plugin_nvidia.so
 %dir %{_prefix}/libexec/ksysguard
 %attr(755,root,root) %{_prefix}/libexec/ksysguard/ksgrd_network_helper
-
 %{_libdir}/qt6/qml/org/kde/ksysguard/faces/SensorRangeSpinBox.qml
-
 %{_libdir}/qt6/qml/org/kde/ksysguard/faces/Choices.qml
 %attr(755,root,root) %{_libdir}/qt6/plugins/kf6/packagestructure/ksysguard_sensorface.so
 %attr(755,root,root) %{_prefix}/libexec/kf6/kauth/ksysguardprocesslist_helper
 %{_datadir}/dbus-1/interfaces/org.kde.ksystemstats1.xml
 %{_libdir}/qt6/qml/org/kde/ksysguard/faces/CompactSensorFace.qml
+%{_libdir}/qt6/qml/org/kde/ksysguard/faces/SensorFaces.qmltypes
+%{_libdir}/qt6/qml/org/kde/ksysguard/faces/kde-qmlmodule.version
+%attr(755,root,root) %{_libdir}/qt6/qml/org/kde/ksysguard/faces/libSensorFacesplugin.so
+%{_libdir}/qt6/qml/org/kde/ksysguard/faces/private/SensorFacesPrivate.qmltypes
+%{_libdir}/qt6/qml/org/kde/ksysguard/faces/private/kde-qmlmodule.version
+%attr(755,root,root) %{_libdir}/qt6/qml/org/kde/ksysguard/faces/private/libSensorFacesPrivate.so
+%{_libdir}/qt6/qml/org/kde/ksysguard/faces/private/qmldir
+%{_libdir}/qt6/qml/org/kde/ksysguard/formatter/Formatter.qmltypes
+%{_libdir}/qt6/qml/org/kde/ksysguard/formatter/kde-qmlmodule.version
+%attr(755,root,root) %{_libdir}/qt6/qml/org/kde/ksysguard/formatter/libFormatterplugin.so
+%{_libdir}/qt6/qml/org/kde/ksysguard/process/ProcessPlugin.qmltypes
+%{_libdir}/qt6/qml/org/kde/ksysguard/process/kde-qmlmodule.version
+%{_libdir}/qt6/qml/org/kde/ksysguard/sensors/Sensors.qmltypes
+%{_libdir}/qt6/qml/org/kde/ksysguard/sensors/kde-qmlmodule.version
+%attr(755,root,root) %{_libdir}/qt6/qml/org/kde/ksysguard/sensors/libSensorsplugin.so
 
 %files devel
 %defattr(644,root,root,755)
