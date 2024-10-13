@@ -129,6 +129,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/qt6/qml/org/kde/ksysguard/faces/SensorFaces.qmltypes
 %{_libdir}/qt6/qml/org/kde/ksysguard/faces/kde-qmlmodule.version
 %attr(755,root,root) %{_libdir}/qt6/qml/org/kde/ksysguard/faces/libSensorFacesplugin.so
+%dir %{_libdir}/qt6/qml/org/kde/ksysguard/faces/private
 %{_libdir}/qt6/qml/org/kde/ksysguard/faces/private/SensorFacesPrivate.qmltypes
 %{_libdir}/qt6/qml/org/kde/ksysguard/faces/private/kde-qmlmodule.version
 %attr(755,root,root) %{_libdir}/qt6/qml/org/kde/ksysguard/faces/private/libSensorFacesPrivate.so
