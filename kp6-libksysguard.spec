@@ -1,18 +1,18 @@
 #
 # Conditional build:
 %bcond_with	tests		# build with tests
-%define		kdeplasmaver	6.3.5
+%define		kdeplasmaver	6.4.0
 %define		qtver		5.15.2
 %define		kpname		libksysguard
 
 Summary:	Library for monitoring your system
 Name:		kp6-%{kpname}
-Version:	6.3.5
+Version:	6.4.0
 Release:	1
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	https://download.kde.org/stable/plasma/%{kdeplasmaver}/%{kpname}-%{version}.tar.xz
-# Source0-md5:	c29885dbb2bf812a442eb77e6b0e0b50
+# Source0-md5:	f0acc9f0dbcdf6b43f623d07d6dd9d07
 URL:		http://www.kde.org/
 BuildRequires:	Qt6Core-devel >= %{qtver}
 BuildRequires:	Qt6Sensors-devel >= %{qtver}
@@ -116,8 +116,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libKSysGuardSystemStats.so.*.*.*
 %dir %{_libdir}/qt6/plugins/ksysguard
 %dir %{_libdir}/qt6/plugins/ksysguard/process
+%attr(755,root,root) %{_libdir}/qt6/plugins/ksysguard/process/ksysguard_plugin_gpu.so
 %attr(755,root,root) %{_libdir}/qt6/plugins/ksysguard/process/ksysguard_plugin_network.so
-%attr(755,root,root) %{_libdir}/qt6/plugins/ksysguard/process/ksysguard_plugin_nvidia.so
 %dir %{_prefix}/libexec/ksysguard
 %attr(755,root,root) %{_prefix}/libexec/ksysguard/ksgrd_network_helper
 %{_libdir}/qt6/qml/org/kde/ksysguard/faces/SensorRangeSpinBox.qml
