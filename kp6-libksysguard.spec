@@ -1,18 +1,18 @@
 #
 # Conditional build:
 %bcond_with	tests		# build with tests
-%define		kdeplasmaver	6.5.3
+%define		kdeplasmaver	6.5.4
 %define		qtver		5.15.2
 %define		kpname		libksysguard
 
 Summary:	Library for monitoring your system
 Name:		kp6-%{kpname}
-Version:	6.5.3
+Version:	6.5.4
 Release:	1
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	https://download.kde.org/stable/plasma/%{kdeplasmaver}/%{kpname}-%{version}.tar.xz
-# Source0-md5:	b62b80e270f9c80a7bd230adde90bc12
+# Source0-md5:	d9d36096e99b6f9fbd6a13b7b971b984
 URL:		http://www.kde.org/
 BuildRequires:	Qt6Core-devel >= %{qtver}
 BuildRequires:	Qt6Sensors-devel >= %{qtver}
