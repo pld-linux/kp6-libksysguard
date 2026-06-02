@@ -43,6 +43,9 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %description
 Library for monitoring your system.
 
+%description -l pl.UTF-8
+Biblioteka do monitorowania twojego systemu.
+
 %package devel
 Summary:	Header files for %{kpname} development
 Summary(pl.UTF-8):	Pliki nagłówkowe dla programistów używających %{kpname}
